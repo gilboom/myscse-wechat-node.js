@@ -1,15 +1,16 @@
 const msgTypeList = require('../util/WeChat').config
 const textController = require('../controller/text')
+const eventController = require('../controller/event')
 exports = module.exports = function (req,res) {
         const msg = req.body
         const type = msg.MsgType
 
         switch (type) {
                 case 'text':
-                        text(msg,res)
+                        textController(msg,res)
                         break
                 case 'event':
-                        event(msg,res)
+                        eventController(msg,res)
                         break
                 default:
                         break

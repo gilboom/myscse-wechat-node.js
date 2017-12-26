@@ -53,6 +53,26 @@ WeChat.config.initMenu = (async function() {
                                                 }
                                         ]
                                 },
+                                {
+                                        name:'信息查询2',
+                                        sub_button:[
+                                                {
+                                                        type:'click',
+                                                        name:'奖惩情况',
+                                                        key:'rewards_punishments'
+                                                },
+                                                {
+                                                        type:'click',
+                                                        name:'开设课程',
+                                                        key:'courses_offered'
+                                                },
+                                                {
+                                                        type:'click',
+                                                        name:'晚归违规电器',
+                                                        key:'illegal'
+                                                },
+                                        ]
+                                }
                         ]
                 },
                 json:true,
