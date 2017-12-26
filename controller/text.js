@@ -3,7 +3,7 @@ module.exports = function (msg,res) {
 
         const _studentInfo = msg.Content.trim()
         let response,content
-        if(!_studentInfo.test('帐号') || !_studentInfo.test('密码') ) {
+        if(!/帐号/.test(_studentInfo) || !/密码/.test(_studentInfo) ) {
                 content = '你输入的绑定信息不规范，请重试！'
                 response = textTemplate(msg,content)
         }else {
