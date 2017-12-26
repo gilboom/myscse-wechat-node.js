@@ -1,7 +1,7 @@
 const msgTypeList = require('../util/WeChat').config
 const textController = require('../controller/text')
 const eventController = require('../controller/event')
-exports = module.exports = function (req,res) {
+exports = module.exports = async function (req,res) {
         const msg = req.body
         const type = msg.MsgType
 
