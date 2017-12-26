@@ -1,5 +1,5 @@
 const Mongoose = require('mongoose')
-Mongoose.connect('mongodb://localhost/accessToken',{
+Mongoose.connect('mongodb://localhost/gilboom',{
         useMongoClient:true
 })
 
