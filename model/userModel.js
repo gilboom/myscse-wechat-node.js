@@ -7,4 +7,4 @@ const userSchema = new Schema({
         openId:String
 })
 
-const User = Mongoose.Model('User',userSchema)
+const User = Mongoose.model('User',userSchema)
