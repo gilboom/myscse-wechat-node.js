@@ -5,9 +5,9 @@ module.exports = function (msg,res) {
         let response,content;
         switch (key) {
                 case 'account_bind':
-                        content = `按以下格式发送帐号密码即可绑定：
-                                        帐号 xxxxxxxxxx
-                                        密码 xxxxxxxxxxxxxx`
+                content = `按以下格式发送帐号密码即可绑定：
+                帐号 xxxxxxxxxx
+                密码 xxxxxxxxxxxxxx`
                         response = textTemplate(msg,content)
                         res.send(response)
                         break;
