@@ -7,7 +7,7 @@ exports = module.exports = function (req,res) {
 
         switch (type) {
                 case 'text':
-                        textController(msg,res)
+                        await textController(msg,res)
                         break
                 case 'event':
                         eventController(msg,res)
