@@ -22,7 +22,7 @@ app.get('/wx',checkSignature)
 
 app.post('/wx',logger,route)
 
-app.listen(process.env.PORT|| 3000)
+app.listen(443)
 
 async function checkSignature(req,res) {
         const {signature,timestamp,nonce,echostr} = req.query
