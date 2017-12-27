@@ -37,6 +37,9 @@ module.exports = async function (msg,res) {
                         case 'grade':
                                 break
                         case 'rewards_punishments':
+                        const rewardsPunishment = await studentService.getRewardsPunishment(openId)
+                        content = getRewardsPunishmentContent(rewardsPunishment)
+                        response = textTemplate(msg,content)
                                 break
                         case 'courses_offered':
                                 break
@@ -98,5 +101,34 @@ function getAttendanceInfoContent(attendance) {
                                 '课程名称：'+attendance[i]['name']+'\n'+
                                 '考勤状况：'+attendance[i]['attendance']+'\n\n'
         }
+        return content
+}
+
+function getRewardsPunishmentContent(rewardsPunishment) {
+        let content = '奖励：\n\n'
+        const rewards = rewardsPunishment.rewards
+        const punishment = rewardsPunishment.punishment
+        let length = rewards.length
+        for(let i = 0; i < length ;i++) {
+                content = content + 
+                                '学年：'+rewards[i]['code']+'\n'+
+                                '学期：'+rewards[i]['name']+'\n'+
+                                '奖励级别：'+rewards[i]['level']+'\n'+
+                                '获奖原因：'+rewards[i]['reason']+'\n'+
+                                '颁奖单位：'+rewards[i]['apartment']+'\n'+
+                                '获奖日期：'+rewards[i]['date']+'\n\n'
+        }
+        length = punishment.length
+        content = content + '处分：\n\n'
+        for(let i = 0; i < length ;i++) {
+                content = content + 
+                                '学年：'+punishment[i]['code']+'\n'+
+                                '学期：'+punishment[i]['name']+'\n'+
+                                '处分级别：'+punishment[i]['level']+'\n'+
+                                '处分原因：'+punishment[i]['reason']+'\n'+
+                                '处分单位：'+punishment[i]['apartment']+'\n'+
+                                '处分日期：'+punishment[i]['date']+'\n\n'
+        }
+
         return content
 }
