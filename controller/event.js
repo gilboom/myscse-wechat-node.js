@@ -1,6 +1,6 @@
 const textTemplate = require('../template/textTemplate')
 const studentService = require('../service/student')
-module.exports = function (msg,res) {
+module.exports = async function (msg,res) {
 
         const key = msg.EventKey
         let response,content;
