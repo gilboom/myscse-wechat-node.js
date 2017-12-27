@@ -81,7 +81,7 @@ function getExaminationTimeContent(examinationTime) {
                                 '时间：'+examinationTime[i]['time']+'\n'+
                                 '考场：'+examinationTime[i]['placeName']+'\n'+
                                 '座位号：'+examinationTime[i]['position']+'\n'+
-                                '状态：'+examinationTime[i]['status']+'\n'
+                                '状态：'+examinationTime[i]['status']+'\n\n'
         }
         return content
 }
