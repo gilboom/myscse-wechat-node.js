@@ -1,5 +1,6 @@
 const textTemplate = require('../template/textTemplate')
 const studentService = require('../service/student')
+const log = console.log.bind(console)
 module.exports = async function (msg,res) {
 
         const key = msg.EventKey
@@ -27,7 +28,6 @@ module.exports = async function (msg,res) {
                         班主任：${studentInfo.get('班主任')}
                         辅导员：${studentInfo.get('辅导员')}`
                         response = textTemplate(content)
-                        res.send(response)
                                 break
                         case 'classes':
                                 break
@@ -44,5 +44,7 @@ module.exports = async function (msg,res) {
                         case 'illegal':
                                 break
                 }
+                log('发送的信息是： '+response)
+                res.send(response)
         }
 }
