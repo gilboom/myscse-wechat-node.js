@@ -13,7 +13,6 @@ module.exports = async function (msg,res) {
                 res.send(response)
         }else {
                 const openId = msg.FromUserName
-
                 switch (key) {
                         case 'student_info':
                         const studentInfo = await studentService.getStudentInfo(openId)
@@ -27,7 +26,7 @@ module.exports = async function (msg,res) {
                         行政班：${studentInfo.get('行政班')}
                         班主任：${studentInfo.get('班主任')}
                         辅导员：${studentInfo.get('辅导员')}`
-                        response = textTemplate(msg,context)
+                        response = textTemplate(msg,content)
                                 break
                         case 'classes':
                                 break

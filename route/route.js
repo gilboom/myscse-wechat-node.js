@@ -7,7 +7,7 @@ exports = module.exports = async function (req,res) {
 
         switch (type) {
                 case 'text':
-                        await textController(msg,res)
+                        textController(msg,res)
                         break
                 case 'event':
                         eventController(msg,res)
