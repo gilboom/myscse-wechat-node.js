@@ -20,7 +20,7 @@ module.exports = async function (msg,res) {
 }
 
 function getUsername(str) {
-        const start  = str.search(/帐号/)+2
+        const start  = str.search(/(帐号)|(账号)/)+2
         const end = str.search(/密码/)-1
         return str.substring(start,end).trim()
 }
