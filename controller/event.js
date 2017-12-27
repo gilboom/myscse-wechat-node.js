@@ -15,7 +15,19 @@ module.exports = function (msg,res) {
 
                 switch (key) {
                         case 'student_info':
-                        // studentService.getStudentInfo()
+                        const studentInfo = await studentService.getStudentInfo(openId)
+                        content = 
+                        `学号：${studentInfo.get('学号')}
+                        姓名：${studentInfo.get('姓名')}
+                        年级：${studentInfo.get('年级')}
+                        专业：${studentInfo.get('专业')}
+                        身份证：${studentInfo.get('身份证')}
+                        电子邮箱：${studentInfo.get('电子邮箱')}
+                        行政班：${studentInfo.get('行政班')}
+                        班主任：${studentInfo.get('班主任')}
+                        辅导员：${studentInfo.get('辅导员')}`
+                        response = textTemplate(content)
+                        res.send(response)
                                 break
                         case 'classes':
                                 break
