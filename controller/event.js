@@ -27,7 +27,7 @@ module.exports = async function (msg,res) {
                         行政班：${studentInfo.get('行政班')}
                         班主任：${studentInfo.get('班主任')}
                         辅导员：${studentInfo.get('辅导员')}`
-                        response = textTemplate(content)
+                        response = textTemplate(msg,context)
                                 break
                         case 'classes':
                                 break
