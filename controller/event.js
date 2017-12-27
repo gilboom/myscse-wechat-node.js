@@ -56,11 +56,13 @@ function getStudentInfoContent(studentInfo) {
 
 function getClassesInfoContent(classes) {
         let content = ''
-        for(let i = 1 ; i<= 7;i++ ) {
+        for(let i = 1 ; i<= 5;i++ ) {
                 const day = classes.get(i)
                 content = content + '星期'+i + '\n'
                 for(let j = 1;j<=8;j++) {
-                        content = content + `第${1+2*(j-1)}-${1+1+2*(j-1)}节  ` +day.get(`第${1+2*(j-1)}-${1+1+2*(j-1)}节`)+'\n'
+                        let nums = `第${1+2*(j-1)}-${1+1+2*(j-1)}节`
+                let className = day.get(nums).replace(/\(.*\)/,'')
+                        content = content +nums+'  '+className+'\n'
                 }
         }
         return content
