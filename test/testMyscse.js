@@ -13,10 +13,10 @@ async function  main(params) {
         // log(examinationTime)
         // const rewardsPunishment = await myscse.getRewardsPunishment(context)
         // log(rewardsPunishment)
-        const offeredCourses = await myscse.getOfferedCourses(context)
-        log(offeredCourses)
-        // const illegalInfo = await myscse.getIllegalInfo(context)
-        // log(illegalInfo)
+        // const offeredCourses = await myscse.getOfferedCourses(context)
+        // log(offeredCourses)
+        const illegalInfo = await myscse.getIllegalInfo(context)
+        log(illegalInfo)
 }
 
 main()

@@ -47,6 +47,9 @@ module.exports = async function (msg,res) {
                         response = textTemplate(msg,content)
                                 break
                         case 'illegal':
+                        const illegalInfo = await studentService.getIllegalInfo(openId)
+                        content = getIllegalInfoContent(illegalInfo)
+                        response = textTemplate(msg,content)
                                 break
                 }
                 log('发送的信息是： '+response)
@@ -148,5 +151,25 @@ function getOfferedCoursesContent(offeredCourses) {
                                 '先修课程：'+offeredCourses[i]['advanced']+'\n'+
                                 '同修课程：'+offeredCourses[i]['together']+'\n\n'
         }
+        return content
+}
+
+function getIllegalInfoContent(illegalInfo) {
+        let content = '违规用电记录：\n\n'
+        const electricityViolation = illegalInfo.electricityViolation
+        let length = electricityViolation.length
+        for(let i = 0; i < length ;i++) {
+                content = content + 
+                                '学年：'+electricityViolation[i]['year']+'\n'+
+                                '学期：'+electricityViolation[i]['term']+'\n'+
+                                '宿舍号：'+electricityViolation[i]['dorm']+'\n'+
+                                '违规日期：'+electricityViolation[i]['date']+'\n'+
+                                '违规次数：'+electricityViolation[i]['times']+'\n'+
+                                '停电天数：'+electricityViolation[i]['days']+'\n'+
+                                '违规原因：'+electricityViolation[i]['reason']+'\n'+
+                                '是否为责任人：'+electricityViolation[i]['isResponsible']+'\n\n'
+        }
+        content = content + '晚归次数：'+illegalInfo.lateBack+'\n'
+        content = content + '停电次数：'+illegalInfo.stopElectricity+'\n'
         return content
 }
