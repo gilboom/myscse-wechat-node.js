@@ -63,4 +63,5 @@ function getClassesInfoContent(classes) {
                         content = content + `第${1+2*(j-1)}-${1+1+2*(j-1)}节  ` +day.get(`第${1+2*(j-1)}-${1+1+2*(j-1)}节`)+'\n'
                 }
         }
+        return content
 }
