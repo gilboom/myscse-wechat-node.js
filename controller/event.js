@@ -42,6 +42,9 @@ module.exports = async function (msg,res) {
                         response = textTemplate(msg,content)
                                 break
                         case 'courses_offered':
+                        const offeredCourses = await studentService.getOfferedCourses(openId)
+                        content = getOfferedCoursesContent(offeredCourses)
+                        response = textTemplate(msg,content)
                                 break
                         case 'illegal':
                                 break
@@ -130,5 +133,20 @@ function getRewardsPunishmentContent(rewardsPunishment) {
                                 '处分日期：'+punishment[i]['date']+'\n\n'
         }
 
+        return content
+}
+
+function getOfferedCoursesContent(offeredCourses) {
+        let content = '下学期开设的必修课程：\n\n'
+        let length = offeredCourses.length
+        for(let i = 0; i < length ;i++) {
+                content = content + 
+                                '课程代码：'+offeredCourses[i]['code']+'\n'+
+                                '课程名称：'+offeredCourses[i]['name']+'\n'+
+                                '课程学分：'+offeredCourses[i]['credit']+'\n'+
+                                '考核方式：'+offeredCourses[i]['way']+'\n'+
+                                '先修课程：'+offeredCourses[i]['advanced']+'\n'+
+                                '同修课程：'+offeredCourses[i]['together']+'\n\n'
+        }
         return content
 }
