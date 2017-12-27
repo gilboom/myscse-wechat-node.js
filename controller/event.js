@@ -111,8 +111,8 @@ function getRewardsPunishmentContent(rewardsPunishment) {
         let length = rewards.length
         for(let i = 0; i < length ;i++) {
                 content = content + 
-                                '学年：'+rewards[i]['code']+'\n'+
-                                '学期：'+rewards[i]['name']+'\n'+
+                                '学年：'+rewards[i]['year']+'\n'+
+                                '学期：'+rewards[i]['term']+'\n'+
                                 '奖励级别：'+rewards[i]['level']+'\n'+
                                 '获奖原因：'+rewards[i]['reason']+'\n'+
                                 '颁奖单位：'+rewards[i]['apartment']+'\n'+
@@ -122,8 +122,8 @@ function getRewardsPunishmentContent(rewardsPunishment) {
         content = content + '处分：\n\n'
         for(let i = 0; i < length ;i++) {
                 content = content + 
-                                '学年：'+punishment[i]['code']+'\n'+
-                                '学期：'+punishment[i]['name']+'\n'+
+                                '学年：'+punishment[i]['year']+'\n'+
+                                '学期：'+punishment[i]['term']+'\n'+
                                 '处分级别：'+punishment[i]['level']+'\n'+
                                 '处分原因：'+punishment[i]['reason']+'\n'+
                                 '处分单位：'+punishment[i]['apartment']+'\n'+
