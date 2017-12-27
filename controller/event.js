@@ -91,12 +91,12 @@ function getExaminationTimeContent(examinationTime) {
 
 function getAttendanceInfoContent(attendance) {
         let content = ''
-        let length = examinationTime.length
+        let length = attendance.length
         for(let i = 0; i < length ;i++) {
                 content = content + 
-                                '课程代码：'+examinationTime[i]['code']+'\n'+
-                                '课程名称：'+examinationTime[i]['name']+'\n'+
-                                '考勤状况：'+examinationTime[i]['attendance']+'\n\n'
+                                '课程代码：'+attendance[i]['code']+'\n'+
+                                '课程名称：'+attendance[i]['name']+'\n'+
+                                '考勤状况：'+attendance[i]['attendance']+'\n\n'
         }
         return content
 }
