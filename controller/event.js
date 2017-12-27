@@ -16,19 +16,13 @@ module.exports = async function (msg,res) {
                 switch (key) {
                         case 'student_info':
                         const studentInfo = await studentService.getStudentInfo(openId)
-                        content = 
-                        `学号：${studentInfo.get('学号')}
-                        姓名：${studentInfo.get('姓名')}
-                        年级：${studentInfo.get('年级')}
-                        专业：${studentInfo.get('专业')}
-                        身份证：${studentInfo.get('身份证')}
-                        电子邮箱：${studentInfo.get('电子邮箱')}
-                        行政班：${studentInfo.get('行政班')}
-                        班主任：${studentInfo.get('班主任')}
-                        辅导员：${studentInfo.get('辅导员')}`
+                        content = getStudentInfoContent(studentInfo)
                         response = textTemplate(msg,content)
                                 break
                         case 'classes':
+                        const classes = await studentService.getClassesInfo(openId)
+                        content = getClassesInfoContent(classes)
+                        response = textTemplate(msg,content)
                                 break
                         case 'examination_time':
                                 break
@@ -45,5 +39,28 @@ module.exports = async function (msg,res) {
                 }
                 log('发送的信息是： '+response)
                 res.send(response)
+        }
+}
+
+function getStudentInfoContent(studentInfo) {
+        return `学号：${studentInfo.get('学号')}
+        姓名：${studentInfo.get('姓名')}
+        年级：${studentInfo.get('年级')}
+        专业：${studentInfo.get('专业')}
+        身份证：${studentInfo.get('身份证')}
+        电子邮箱：${studentInfo.get('电子邮箱')}
+        行政班：${studentInfo.get('行政班')}
+        班主任：${studentInfo.get('班主任')}
+        辅导员：${studentInfo.get('辅导员')}`
+}
+
+function getClassesInfoContent(classes) {
+        let content = ''
+        for(let i = 1 ; i<= 7;i++ ) {
+                const day = classes.get(i)
+                content = content + '星期'+i + '\n'
+                for(let j = 1;j<=8;j++) {
+                        content = content + `第${1+2*(j-1)}-${1+1+2*(j-1)}节  ` +day.get(`第${1+2*(j-1)}-${1+1+2*(j-1)}节`)+'\n'
+                }
         }
 }

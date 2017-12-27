@@ -7,7 +7,9 @@ module.exports = {
                 return myscse.getUserInfo(context)
         },
         async getClassesInfo(openId) {
-
+                const user = await User.findUserByOpenId(openId)
+                const context = await myscse.login(user.username,user.password)
+                return myscse.getClasses(context)
         },
         async getAttendanceInfo(openId) {
 
