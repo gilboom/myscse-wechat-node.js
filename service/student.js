@@ -17,7 +17,9 @@ module.exports = {
                 return myscse.getExaminationTime(context)
         },
         async getAttendanceInfo(openId) {
-
+                const user = await User.findUserByOpenId(openId)
+                const context = await myscse.login(user.username,user.password)
+                return myscse.getAttendance(context)
         },
         async getGradeInfo(openId) {
                 
