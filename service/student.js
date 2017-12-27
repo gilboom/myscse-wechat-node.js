@@ -21,7 +21,7 @@ module.exports = {
                 const context = await myscse.login(user.username,user.password)
                 return myscse.getAttendance(context)
         },
-        async getRewardsPunishment() {
+        async getRewardsPunishment(openId) {
                 const user = await User.findUserByOpenId(openId)
                 const context = await myscse.login(user.username,user.password)
                 return myscse.getRewardsPunishment(context)
