@@ -25,6 +25,9 @@ module.exports = async function (msg,res) {
                         response = textTemplate(msg,content)
                                 break
                         case 'examination_time':
+                        const examinationTime = await studentService.getExaminationTime(openId)
+                        content = getExaminationTimeContent(examinationTime)
+                        response = textTemplate(msg,content)
                                 break
                         case 'attendance':
                                 break
@@ -64,6 +67,21 @@ function getClassesInfoContent(classes) {
                 let className = day.get(nums).replace(/\(.*\)/,'')
                         content = content +nums+'  '+className+'\n'
                 }
+        }
+        return content
+}
+
+function getExaminationTimeContent(examinationTime) {
+        let content = ''
+        let length = examinationTime.length
+        for(let i = 0; i < length ;i++) {
+                content = content + 
+                                '科目：'+examinationTime[i]['name']+'\n'+
+                                '日期：'+examinationTime[i]['date']+'\n'+
+                                '时间：'+examinationTime[i]['time']+'\n'+
+                                '考场：'+examinationTime[i]['placeName']+'\n'+
+                                '座位号：'+examinationTime[i]['position']+'\n'+
+                                '状态：'+examinationTime[i]['status']+'\n'
         }
         return content
 }
