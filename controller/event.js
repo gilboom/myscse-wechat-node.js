@@ -35,6 +35,9 @@ module.exports = async function (msg,res) {
                         response = textTemplate(msg,content)
                                 break
                         case 'grade':
+                        const grade = await studentService.getGrade(openId)
+                        content = getGradeContent(grade)
+                        response = textTemplate(msg,content)
                                 break
                         case 'rewards_punishments':
                         const rewardsPunishment = await studentService.getRewardsPunishment(openId)
@@ -49,11 +52,6 @@ module.exports = async function (msg,res) {
                         case 'illegal':
                         const illegalInfo = await studentService.getIllegalInfo(openId)
                         content = getIllegalInfoContent(illegalInfo)
-                        response = textTemplate(msg,content)
-                                break
-                        case 'grade':
-                        const grade = await studentService.getGrade(openId)
-                        content = getGradeContent(grade)
                         response = textTemplate(msg,content)
                                 break
                 }
