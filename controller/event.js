@@ -6,9 +6,7 @@ module.exports = async function (msg,res) {
         const key = msg.EventKey
         let response,content;
         if(key === 'account_bind') {
-                content = `按以下格式发送帐号密码即可绑定：
-                帐号 xxxxxxxxxx
-                密码 xxxxxxxxxxxxxx`
+                content = getBindRemindContent()
                 response = textTemplate(msg,content)
                 res.send(response)
         }else {
@@ -58,6 +56,14 @@ module.exports = async function (msg,res) {
                 log('发送的信息是： '+response)
                 res.send(response)
         }
+}
+
+function getBindRemindContent() {
+        let content = ''
+        content = content + '按以下格式发送帐号密码即可绑定：'
+        content = content +'帐号 xxxxxxxxxx'
+        content =content +'密码 xxxxxxxxxxxxxx'
+        return content
 }
 
 function getStudentInfoContent(studentInfo) {
@@ -179,7 +185,7 @@ function getIllegalInfoContent(illegalInfo) {
 
 function getGradeContent(grade) {
         let content = '学年：'+grade.year+ '\n\n'
-        content = content +'必修：\n'
+        content = content +'必修：\n\n'
         content = content +'第一学期：\n'
         grade.requiredGrade.first.forEach(subject => {
                 content = content +subject.name +'：' +subject.score+ '\n'
@@ -190,6 +196,7 @@ function getGradeContent(grade) {
                 content = content +subject.name +'：' +subject.score+ '\n'
         });
         content = content +'\n'
+        content = content +'选修：\n\n'
         content = content +'第一学期：\n'
         grade.electiveGrade.first.forEach(subject => {
                 content = content +subject.name +'：' +subject.score+ '\n'
@@ -199,6 +206,5 @@ function getGradeContent(grade) {
         grade.electiveGrade.second.forEach(subject => {
                 content = content +subject.name +'：' +subject.score+ '\n'
         });
-        log('成绩：'+content)
         return content
 }
