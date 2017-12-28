@@ -11,6 +11,10 @@ userSchema.statics.findUserByOpenId = async function(openId) {
         return this.findOne({openId})
 }
 
+userSchema.statics.deleteUserByOpenId = async function(openId) {
+        return this.remove({openId})
+}
+
 const User = Mongoose.model('User',userSchema)
 
 module.exports = User

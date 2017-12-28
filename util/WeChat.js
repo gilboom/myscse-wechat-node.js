@@ -19,9 +19,19 @@ WeChat.config.initMenu = (async function() {
                 body:{
                         'button':[
                                 {
-                                        type:'click',
-                                        name:'帐号绑定',
-                                        key:'account_bind'
+                                        name:'帐号服务',
+                                        sub_button:[
+                                                {
+                                                        type:'click',
+                                                        name:'帐号绑定',
+                                                        key:'account_bind'
+                                                },
+                                                {
+                                                        type:'click',
+                                                        name:'帐号解绑',
+                                                        key:'account_unbind'
+                                                }
+                                        ]
                                 },
                                 {
                                         name:'信息查询1',

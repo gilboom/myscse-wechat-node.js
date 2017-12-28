@@ -5,12 +5,17 @@ module.exports = async function (msg,res) {
 
         const key = msg.EventKey
         let response,content;
+        const openId = msg.FromUserName
         if(key === 'account_bind') {
                 content = getBindRemindContent()
                 response = textTemplate(msg,content)
                 res.send(response)
+        }else if(key === 'account_unbind'){
+                await studentService.unbind(openId)
+                content = getUnbindRemindContent()
+                response = textTemplate(msg,content)
+                res.send(response)
         }else {
-                const openId = msg.FromUserName
                 switch (key) {
                         case 'student_info':
                         const studentInfo = await studentService.getStudentInfo(openId)
@@ -60,10 +65,14 @@ module.exports = async function (msg,res) {
 
 function getBindRemindContent() {
         let content = ''
-        content = content + '按以下格式发送帐号密码即可绑定：'
-        content = content +'帐号 xxxxxxxxxx'
-        content =content +'密码 xxxxxxxxxxxxxx'
+        content = content + '按以下格式发送帐号密码即可绑定：\n'
+        content = content +'帐号 xxxxxxxxxx\n'
+        content =content +'密码 xxxxxxxxxxxxxx\n'
         return content
+}
+
+function getUnbindRemindContent() {
+        return '解除绑定成功'
 }
 
 function getStudentInfoContent(studentInfo) {

@@ -1,6 +1,9 @@
 const myscse = require('myscse-node')
 const User = require('../model/userModel')
 module.exports = {
+        async unbind(openId) {
+                await User.deleteUserByOpenId(openId)
+        },
         async getStudentInfo(openId) {
                 const user = await User.findUserByOpenId(openId)
                 const context = await myscse.login(user.username,user.password)
