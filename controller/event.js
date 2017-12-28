@@ -187,16 +187,20 @@ function getGradeContent(grade) {
                 content = content +subject.name +'：' +subject.score+ '\n'
         });
         content = content +'\n'
+        content = content +'第二学期：\n'
         grade.requiredGrade.second.forEach(subject => {
                 content = content +subject.name +'：' +subject.score+ '\n'
         });
         content = content +'\n'
+        content = content +'第一学期：\n'
         grade.electiveGrade.first.forEach(subject => {
                 content = content +subject.name +'：' +subject.score+ '\n'
         });
         content = content +'\n'
+        content = content +'第二学期：\n'
         grade.electiveGrade.second.forEach(subject => {
                 content = content +subject.name +'：' +subject.score+ '\n'
         });
+        log('成绩：'+content)
         return content
 }
