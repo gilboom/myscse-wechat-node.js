@@ -17,7 +17,7 @@ module.exports = async function (msg,res) {
                 res.send(response)
         }else {
                 //检查绑定与否
-                if(!studentService.checkBind(openId)) {
+                if(!await studentService.checkBind(openId)) {
                         let content = '请先绑定！'
                         response = textTemplate(msg,content)
                         return res.send(response)
