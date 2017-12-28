@@ -51,6 +51,11 @@ module.exports = async function (msg,res) {
                         content = getIllegalInfoContent(illegalInfo)
                         response = textTemplate(msg,content)
                                 break
+                        case 'grade':
+                        const grade = await studentService.getGrade(openId)
+                        content = getGradeContent(grade)
+                        response = textTemplate(msg,content)
+                                break
                 }
                 log('发送的信息是： '+response)
                 res.send(response)
@@ -171,5 +176,27 @@ function getIllegalInfoContent(illegalInfo) {
         }
         content = content + '晚归次数：'+illegalInfo.lateBack+'\n'
         content = content + '停电次数：'+illegalInfo.stopElectricity+'\n'
+        return content
+}
+
+function getGradeContent(grade) {
+        let content = '学年：'+grade.year+ '\n\n'
+        content = content +'必修：\n'
+        content = content +'第一学期：\n'
+        grade.requiredGrade.first.forEach(subject => {
+                content = content +subject.name +'：' +subject.score+ '\n'
+        });
+        content = content +'\n'
+        grade.requiredGrade.second.forEach(subject => {
+                content = content +subject.name +'：' +subject.score+ '\n'
+        });
+        content = content +'\n'
+        grade.electiveGrade.first.forEach(subject => {
+                content = content +subject.name +'：' +subject.score+ '\n'
+        });
+        content = content +'\n'
+        grade.electiveGrade.second.forEach(subject => {
+                content = content +subject.name +'：' +subject.score+ '\n'
+        });
         return content
 }

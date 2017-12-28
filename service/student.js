@@ -37,6 +37,8 @@ module.exports = {
                 return myscse.getIllegalInfo(context)
         },
         async getGradeInfo(openId) {
-                
+                const user = await User.findUserByOpenId(openId)
+                const context = await myscse.login(user.username,user.password)
+                return myscse.getGrade(context)
         }
 }
