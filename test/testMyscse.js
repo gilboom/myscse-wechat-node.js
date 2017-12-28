@@ -15,8 +15,10 @@ async function  main(params) {
         // log(rewardsPunishment)
         // const offeredCourses = await myscse.getOfferedCourses(context)
         // log(offeredCourses)
-        const illegalInfo = await myscse.getIllegalInfo(context)
-        log(illegalInfo)
+        // const illegalInfo = await myscse.getIllegalInfo(context)
+        // log(illegalInfo)
+        const grade = await myscse.getGrade(context)
+        log(grade)
 }
 
 main()
